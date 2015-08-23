@@ -13,10 +13,32 @@
 
 <body style="background: #f3f3f3" ng-app="app">
   
-	<h1>Stock Tracker App!</h1>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">Stock Tracker</span>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" ng-href="/dashboard">Dashboard</a>
+        <a class="mdl-navigation__link" ng-href="/manage">Manage</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Stock Tracker</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" ng-href="/dashboard">Dashboard</a>
+        <a class="mdl-navigation__link" ng-href="/manage">Manage</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content" style="padding: 20px;">
+      <ng-view></ng-view>
+    </main>
+  </div>
   
   <!-- ES6 -->
   <script src="/lib/angular/angular.js"></script>
+  <script src="/lib/angular/angular-route.js"></script>
   <!-- App -->
   <script src="/client/app.js"></script>
 </body>

@@ -35,7 +35,8 @@ gulp.task('clean', function(done) {
 gulp.task('angular', function() {
   return gulp
 		.src([
-			'node_modules/angular/angular.js'
+			'node_modules/angular/angular.js',
+			'node_modules/angular-route/angular-route.js'
 		])
 		.pipe(gulp.dest(PATHS.dist + '/lib/angular'));
 });

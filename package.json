@@ -21,6 +21,7 @@
   "homepage": "https://github.com/angular-in-action/hello-world-a1#readme",
   "dependencies": {
     "angular": "~1.4.4",
+    "angular-route": "~1.4.4",
     "express": "~4.13.1",
     "yahoo-finance": "0.2.11"
   },
