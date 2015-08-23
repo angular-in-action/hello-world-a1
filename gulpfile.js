@@ -21,7 +21,7 @@ var PATHS = {
   client: {
     js: ['client/*.js','client/**/*.js'],
     html: 'client/**/*.html',
-    css: 'client/**/*.css',
+    css: ['client/**/*.css'],
     img: 'client/**/*.{svg,jpg,png,ico}'
   },
   dist: 'dist',
@@ -66,9 +66,7 @@ gulp.task('html', function() {
 gulp.task('css', function() {
   return gulp
     .src(PATHS.client.css)
-    .pipe(changed(PATHS.distClient, {
-      extension: '.css'
-    }))
+    .pipe(concat('app.css'))
     .pipe(gulp.dest(PATHS.distClient));
 });
 
