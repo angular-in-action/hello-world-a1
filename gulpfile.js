@@ -6,6 +6,8 @@ var del = require('del');
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var runSequence = require('run-sequence');
+var concat = require('gulp-concat');
+var wrap = require('gulp-wrap');
 var packageJson = require('./package.json');
 
 var spawn = childProcess.spawn;
@@ -13,11 +15,11 @@ var server;
 
 var PATHS = {
   lib: [
-  ],
-  typings: [
+    'node_modules/angular/angular.js',
+		'node_modules/angular-route/angular-route.js'
   ],
   client: {
-    js: ['client/**/*.js'],
+    js: ['client/*.js','client/**/*.js'],
     html: 'client/**/*.html',
     css: 'client/**/*.css',
     img: 'client/**/*.{svg,jpg,png,ico}'
@@ -32,27 +34,18 @@ gulp.task('clean', function(done) {
   del([PATHS.dist], done);
 });
 
-gulp.task('angular', function() {
-  return gulp
-		.src([
-			'node_modules/angular/angular.js',
-			'node_modules/angular-route/angular-route.js'
-		])
-		.pipe(gulp.dest(PATHS.dist + '/lib/angular'));
-});
-
-gulp.task('libs', ['angular'], function() {
+gulp.task('libs', function() {
   return gulp
     .src(PATHS.lib)
+    .pipe(concat('vendor.js'))
     .pipe(gulp.dest(PATHS.distLib));
 });
 
 gulp.task('js', function() {
   return gulp
     .src(PATHS.client.js)
-    .pipe(changed(PATHS.distClient, {
-      extension: '.js'
-    }))
+    .pipe(concat('app.js'))
+    .pipe(wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
     .pipe(gulp.dest(PATHS.distClient));
 });
 
