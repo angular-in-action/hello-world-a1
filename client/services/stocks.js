@@ -1,19 +1,32 @@
 angular.module("app").service("StockService", StockService)
 	
-var stocks = ['AAPL', 'GOOG', 'FB', 'AMZN', 'TWTR'];
+var symbols = ['AAPL', 'GOOG', 'FB', 'AMZN', 'TWTR'];
+var http;
 
-function StockService () {}
+function StockService ($http) {
+	http = $http;
+}
 
 StockService.prototype.get = function () {
-	return stocks;
+	return symbols;
 };
 
 StockService.prototype.add = function (stock) {
-	stocks.push(stock);
+	symbols.push(stock);
 	return this.get();
 };
 
 StockService.prototype.remove = function (stock) {
-	stocks.splice(stocks.indexOf(stock), 1);
+	symbols.splice(symbols.indexOf(stock), 1);
 	return this.get();
 };
+
+StockService.prototype.load = function () {
+	var self = this;
+	this.loading = true;
+	return http.get('/api/snapshot?symbols=' + symbols.join())
+	.then(function (stocks) {
+		self.loading = false;
+		return self.stocks = stocks.data;
+	});
+}
