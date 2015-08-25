@@ -1,6 +1,6 @@
 angular.module("app").service("StockService", StockService)
 	
-var symbols = ['AAPL', 'GOOG', 'FB', 'AMZN', 'TWTR'];
+var symbols = ['AAPL', 'GOOG', 'FB', 'AMZN', 'TWTR', 'CRM'];
 var http;
 
 function StockService ($http) {

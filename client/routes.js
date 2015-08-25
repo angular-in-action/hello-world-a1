@@ -7,11 +7,11 @@ function ConfigureRoute ($routeProvider, $locationProvider) {
 	$routeProvider
 	.when('/dashboard', {
 		controller: 'Dashboard as dashboard',
-		templateUrl: 'client/dashboard/index.html'
+		templateUrl: 'client/dashboard/dashboard.html'
 	})
 	.when('/manage', {
 		controller: 'Manage as manage',
-		templateUrl: 'client/manage/index.html'
+		templateUrl: 'client/manage/manage.html'
 	})
 	.otherwise('/dashboard');
 }
