@@ -11,11 +11,9 @@ angular.module('app').directive('summary', function () {
 function SummaryController () {
 	
 }
-
 SummaryController.prototype.isNegative = function () {
 	return !(!this.stock || this.stock.change >= 0);
 }
-
 SummaryController.prototype.isPositive = function () {
 	return !(!this.stock || this.stock.change <= 0);
 }
